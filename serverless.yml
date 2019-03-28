@@ -1,0 +1,52 @@
+
+
+service: redisElasticCache 
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: eu-central-1
+
+
+
+functions:
+  redisSetData:
+    handler: functions/redisSetData.redisSetData
+    events:
+      - http:
+          path: set
+          method: post
+          cors: true
+    vpc:
+      securityGroupIds:
+        - sg-46415228
+      subnetIds:
+        - subnet-9bcc27f1
+
+  redisGetData:
+    handler: functions/redisGetData.redisGetData
+    events:
+      - http:
+          path: get
+          method: get
+          cors: true
+    vpc:
+      securityGroupIds:
+        - sg-46415228
+      subnetIds:
+        - subnet-9bcc27f1
+  mariaSetData:
+    handler: functions/mariaSetData.mariaSetData
+    events: 
+      - http:
+          path: mariaset
+          method: post
+          cors: true
+  mariaGetData:
+    handler: functions/mariaGetData.mariaGetData
+    events: 
+      - http:
+          path: mariaget
+          method: get
+          cors: true
+
