@@ -22,7 +22,30 @@ functions:
         - sg-46415228
       subnetIds:
         - subnet-9bcc27f1
-
+  redisSetDataToHash:
+    handler: functions/redisSetDataToHash.redisSetDataToHash
+    events:
+      - http:
+          path: setHashData
+          method: post
+          cors: true
+    vpc:
+      securityGroupIds:
+        - sg-46415228
+      subnetIds:
+        - subnet-9bcc27f1
+  clearRedis:
+    handler: functions/clearRedis.clearRedis
+    events:
+      - http:
+          path: clearRedis
+          method: delete
+          cors: true
+    vpc:
+      securityGroupIds:
+        - sg-46415228
+      subnetIds:
+        - subnet-9bcc27f1
   redisGetData:
     handler: functions/redisGetData.redisGetData
     events:
@@ -48,5 +71,12 @@ functions:
       - http:
           path: mariaget
           method: get
+          cors: true
+  clearMaria:
+    handler: functions/clearMaria.clearMaria
+    events: 
+      - http:
+          path: clearmaria
+          method: delete
           cors: true
 
