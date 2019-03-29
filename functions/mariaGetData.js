@@ -8,14 +8,14 @@ module.exports.mariaGetData = (event, context, callback) => {
       host: process.env.HOST,
       user: process.env.USER,
       password: process.env.PASSWORD,
-      //database: process.env.DATABASE
+      database: process.env.DATABASE
     })
-    .then(function (conn) {
-      let result = conn.query('SELECT * FROM tableName');
+    .then((conn) => {
+      let result = conn.query('SELECT * FROM master');
       conn.end();
       return result;
     })
-    .then(function (results) {
+    .then((results) => {
       const response = {
         statusCode: 200,
         body: JSON.stringify(results)
