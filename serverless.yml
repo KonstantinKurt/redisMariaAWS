@@ -10,6 +10,18 @@ provider:
 
 
 functions:
+  mariaSavesRedisData:
+    handler: functions/mariaSavesRedisData.mariaSavesRedisData
+    events:
+      - http:
+          path: setdatatomaria
+          method: post
+          cors: true
+    vpc:
+      securityGroupIds:
+        - sg-46415228
+      subnetIds:
+        - subnet-9bcc27f1
   redisSetData:
     handler: functions/redisSetData.redisSetData
     events:
